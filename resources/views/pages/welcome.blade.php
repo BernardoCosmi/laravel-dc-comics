@@ -11,20 +11,25 @@
     <div class="container ">
         <div class="container my-5 py-3">
             <div class="comics-grid">
-                @foreach($comics as $comic)
+
+                @if($comics)
+                @foreach($comics as $item)
                     <div class="comic-wrapper">
                         <div class="custom-card">
                             <div class="comic-img-wrapper">
-                                <img src="{{ $comic['thumb'] }}" alt="{{ $comic['series'] }}" class="comic-img">
+                                <img src="{{ $item->thumb }}" alt="{{ $comic->series }}" class="comic-img">
                             </div>
                             <div class="comic-info mt-2">
-                                <h6 class="fw-bolder text-uppercase">{{ $comic['series'] }}</h6>
-                                {{-- <p>{{ $comic['type'] }}</p>
-                                <p>{{ $comic['price'] }}</p> --}}
+                                <h6 class="fw-bolder text-uppercase">{{ $comic->series }}</h6>
+                                <p>{{ $item->type }}</p>
+                                <p>{{ $item->price }}</p> 
                             </div>
                         </div>
                     </div>
                 @endforeach
+                @else
+                    <p class="text-primary text-center">No comics found.</p>
+                @endif
             </div>
             <div class="load-more-btn-wrapper mt-0 ">
                 <button class="custom-btn text-uppercase">Load More</button>
