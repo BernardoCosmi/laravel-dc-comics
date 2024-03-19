@@ -4,6 +4,8 @@
 
 @section('content')
 
+{{-- {{ dd($comics) }} --}}
+
     {{-- Jumbotron --}}
     <div class="container-fluid hero">
     </div>
@@ -24,6 +26,19 @@
                                 <p>{{ $item['type'] }}</p>
                                 <p>{{ $item['price'] }}</p> 
                             </div>
+
+                            {{-- <a href="{{route('comics.edit', $item->id)}}" class="btn btn-ptimary">
+                                Edit
+                            </a> --}}
+
+                            {{-- <form action="{{route('comics.destroy', $item->id)}}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-ptimary">
+                                    Delete
+                                </button>
+                            </form> --}}
+                            
                         </div>
                     </div>
                 @endforeach

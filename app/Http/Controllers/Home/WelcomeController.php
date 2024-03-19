@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers\Home;
 
+use App\Models\Comic;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Comic;
+
 
 class WelcomeController extends Controller
 {
   public function index()
   {
-      $comics = Comic::all();
+      $comic = Comic::all();
 
       return view('pages.comics.index', compact('comics'));
   }
@@ -42,7 +43,7 @@ class WelcomeController extends Controller
    */
   public function show(Comic $comic)
   {
-    $comic = Comic::findOrFail($id);
+    // $comic = Comic::findOrFail($id);
 
     return view('pages.comics.show', compact('comic'));
   }
@@ -52,7 +53,9 @@ class WelcomeController extends Controller
    */
   public function edit(string $id)
   {
-      //
+    $comic = Comic::findOrFail($id);
+    return view('pages.comics.edit', compact('comic'));
+      
   }
 
   /**
@@ -60,7 +63,13 @@ class WelcomeController extends Controller
    */
   public function update(Request $request, string $id)
   {
-      //
+    $form_data= $request->all();
+      
+    $comic = Comic::find($id);
+    $new_comic->update($form_data);
+
+    return redirect()->route('comics.show', ['comic' => $comic->id]);
+
   }
 
   /**
@@ -68,7 +77,10 @@ class WelcomeController extends Controller
    */
   public function destroy(string $id)
   {
-      //
+      $comic = Comic::find($id);
+      $comic->delete();
+
+      return redirect()->route('comics.index');
   }
 
 }
