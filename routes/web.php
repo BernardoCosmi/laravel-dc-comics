@@ -1,6 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Home\WelcomeController;
+use App\Http\Controllers\Controller;
+use App\Http\Controllers\PageController;
+
+
+
 
 
 /*
@@ -14,8 +20,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-use App\Http\Controllers\Home\WelcomeController;
 
-Route::get('/', [WelcomeController::class, 'index']);
+
+Route::get('/', [PageController::class, 'index'])->name('homePage');
+
+Route::resource('comics', WelcomeController::class);
+
+
 
 

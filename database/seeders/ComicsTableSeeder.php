@@ -13,20 +13,19 @@ class ComicsTableSeeder extends Seeder
      */
     public function run()
     {
-        $comics = include database_path('seeders/comics.php');
+        $comics = config('comics');
     
         foreach ($comics as $comic) {
-            DB::table('comics')->insert([
-                'title' => $comic['title'],
-                'description' => $comic['description'],
-                'thumb' => $comic['thumb'],
-                'price' => $comic['price'],
-                'series' => $comic['series'],
-                'sale_date' => $comic['sale_date'],
-                'type' => $comic['type'],
-                'created_at' => now(),
-                'updated_at' => now()
-            ]);
+            $new_comic = new Comic();
+            $new_comic-> title = $comic['title'];
+            $new_comic-> description = $comic['description'];
+            $new_comic-> thumb = $comic['thumb'];
+            $new_comic-> price = $comic['price'];
+            $new_comic-> series = $comic['series'];
+            $new_comic-> sale_date = $comic['sale_date'];
+            $new_comic-> type = $comic['type'];
+            $new_comic-> created_at = now();
+            $new_comic-> updated_at = now();
         }
     }
     

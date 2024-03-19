@@ -11,7 +11,8 @@ class WelcomeController extends Controller
   public function index()
   {
       $comics = Comic::all();
-      return view('pages.welcome', compact('comics'));
+
+      return view('pages.comics.index', compact('comics'));
   }
 
   /**
@@ -19,7 +20,7 @@ class WelcomeController extends Controller
    */
   public function create()
   {
-      return view('welcome.create');
+      return view('pages.comics.create');
   }
 
   /**
@@ -27,18 +28,13 @@ class WelcomeController extends Controller
    */
   public function store(Request $request)
   {
-      $validateData = $request -> validate([
-          'title'=>'required',
-          'description'=>'required',
-          'thumb'=>'required',
-          'price'=>'required',
-          'series'=>'required',
-          'sale_date'=>'required',
-          'type'=>'required',
-      ]);
+    $form_data= $request->all();
+    $new_comic = new Comic();
 
-      $comic = Comic::create($validateData);
-      return redirect() ->route('welcome.index');
+    $new_comic->fill($form_data);
+    $new_comic->save();
+
+    return redirect()->route('comics.show', ['comic' =>$new_comic->id]);
   }
 
   /**
@@ -46,7 +42,9 @@ class WelcomeController extends Controller
    */
   public function show(Comic $comic)
   {
-      return view('welcome.show', compact('comic'));
+    $comic = Comic::findOrFail($id);
+
+    return view('pages.comics.show', compact('comic'));
   }
 
   /**
