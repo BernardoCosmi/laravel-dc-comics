@@ -19,25 +19,25 @@
                     <div class="comic-wrapper">
                         <div class="custom-card">
                             <div class="comic-img-wrapper">
-                                <img :src="{{ $item['thumb'] }}" :alt="{{ $item ['series'] }}" class="comic-img">
+                                <img :src="{{ $item->thumb }}" :alt="{{ $item ->series }}" class="comic-img">
                             </div>
                             <div class="comic-info mt-2">
-                                <h6 class="fw-bolder text-uppercase">{{ $item ['series'] }}</h6>
-                                <p>{{ $item['type'] }}</p>
-                                <p>{{ $item['price'] }}</p> 
+                                <h6 class="fw-bolder text-uppercase">{{ $item ->series }}</h6>
+                                <p>{{ $item->type }}</p>
+                                <p>{{ $item->price }}</p> 
                             </div>
 
-                            {{-- <a href="{{route('comics.edit', $item->id)}}" class="btn btn-ptimary">
+                            <a href="{{route('comics.edit', $item->id)}}" class="btn btn-ptimary">
                                 Edit
-                            </a> --}}
+                            </a>
 
-                            {{-- <form action="{{route('comics.destroy', $item->id)}}" method="POST">
+                            <form action="{{route('comics.destroy', $item->id)}}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-ptimary">
                                     Delete
                                 </button>
-                            </form> --}}
+                            </form>
                             
                         </div>
                     </div>

@@ -7,6 +7,16 @@
         <h2 class="text-light m-3">Crea un nuovo fumetto</h2>
 
         <div class="container">
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                        <li>{{$error}}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
             <form action="{{ route('comics.store') }}" method="POST" class="text-light">
                 
                 @csrf

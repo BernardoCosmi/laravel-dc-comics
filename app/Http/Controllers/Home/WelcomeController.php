@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Home;
 
-use App\Models\Comic;
 use App\Http\Controllers\Controller;
+use App\Models\Comic;
 use Illuminate\Http\Request;
 
 
@@ -29,6 +29,11 @@ class WelcomeController extends Controller
    */
   public function store(Request $request)
   {
+    $request->validate([
+      'title' => 'required|unique:posts'
+    ]);
+
+
     $form_data= $request->all();
     $new_comic = new Comic();
 
