@@ -4,7 +4,7 @@
 
 @section('content')
 
-{{-- {{ dd($comics) }} --}}
+{{ dd($comics) }}
 
     {{-- Jumbotron --}}
     <div class="container-fluid hero">
